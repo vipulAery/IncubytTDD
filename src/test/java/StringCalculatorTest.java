@@ -78,4 +78,18 @@ public class StringCalculatorTest {
 
     }
 
+    @Test
+    void addMultipleNumbersString() {
+        assertEquals(13, stringCalculator.add("1,3,4,5"));
+    }
+
+    @Test
+    void addMultipleNumbersStringWithNegativeAndPositiveIntegers() {
+        assertEquals(-3, stringCalculator.add("1,-3,4,-5"));
+    }
+
+    @Test
+    void addMultipleNumbersStringWithNegativeAndPositiveIntegersWithResultEqualsToSumOfFirstTwoIntegers() {
+        assertEquals(-2, stringCalculator.add("1,-3,4,-4"));
+    }
 }
