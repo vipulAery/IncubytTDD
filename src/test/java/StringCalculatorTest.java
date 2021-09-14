@@ -92,4 +92,9 @@ public class StringCalculatorTest {
     void addMultipleNumbersStringWithNegativeAndPositiveIntegersWithResultEqualsToSumOfFirstTwoIntegers() {
         assertEquals(-2, stringCalculator.add("1,-3,4,-4"));
     }
+
+    @Test
+    void addMultipleNumbersStringWithTwoTypesOfDelimiters() {
+        assertEquals(19, stringCalculator.add("1\n3\n4,5,6"));
+    }
 }
