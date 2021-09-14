@@ -14,7 +14,7 @@ public class StringCalculator {
         }
         int number2 = Integer.parseInt(numbersArray[1]);
 
-        return number1 + number2;
+        return Math.addExact(number1, number2);
     }
 
 }
