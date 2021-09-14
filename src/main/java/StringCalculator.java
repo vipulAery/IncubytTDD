@@ -1,9 +1,10 @@
 import static java.util.Objects.isNull;
 
 public class StringCalculator {
-    private final String SPLITTER = ",";
+    private final String SPLITTER = "[,\n]+";
+
     public int add(String numbers) {
-        if(isNull(numbers) || numbers.isEmpty()) {
+        if (isNull(numbers) || numbers.isEmpty()) {
             return 0;
         }
 
