@@ -8,13 +8,14 @@ public class StringCalculator {
         }
 
         String[] numbersArray = numbers.split(SPLITTER);
-        int number1 = Integer.parseInt(numbersArray[0]);
-        if(numbersArray.length == 1) {
-            return number1;
+        int sum = 0;
+        int number;
+        for (String s : numbersArray) {
+            number = Integer.parseInt(s);
+            sum = Math.addExact(sum, number);
         }
-        int number2 = Integer.parseInt(numbersArray[1]);
 
-        return Math.addExact(number1, number2);
+        return sum;
     }
 
 }
