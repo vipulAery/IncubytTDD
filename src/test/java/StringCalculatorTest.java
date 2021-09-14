@@ -97,4 +97,14 @@ public class StringCalculatorTest {
     void addMultipleNumbersStringWithTwoTypesOfDelimiters() {
         assertEquals(19, stringCalculator.add("1\n3\n4,5,6"));
     }
+
+    @Test
+    void addMultipleNumbersStringWithCustomDelimiter() {
+        assertEquals(19, stringCalculator.add("//;\n1;3;4;5;6"));
+    }
+
+    @Test
+    void addMultipleNumbersStringWithCustomAsWellDefaultDelimiters() {
+        assertEquals(19, stringCalculator.add("//\t\n1\n3\n4,5\t6"));
+    }
 }
