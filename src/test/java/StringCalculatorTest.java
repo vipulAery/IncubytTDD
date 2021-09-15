@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -86,7 +87,7 @@ public class StringCalculatorTest {
 
     @Test
     void addMultipleNumbersStringWithCustomDelimiter() {
-        assertEquals(19, stringCalculator.add("//;\n1;3;4;5;6"));
+        assertEquals(19, stringCalculator.add("//[;]\n1;3;4;5;6"));
     }
 
     @Test
@@ -103,6 +104,16 @@ public class StringCalculatorTest {
     @Test
     void addMultipleNumbersStringContainingNumberGreaterThan1000() {
         assertEquals(14, stringCalculator.add("//[\t]\n1\n3\n4,1001\t6"));
+    }
+
+    @Test
+    void addMultipleNumbersStringWithMultipleSingleCharCustomDelimitersAsWellDefaultDelimiters() {
+        assertEquals(30, stringCalculator.add("//[\t][;][*]\n1\n3;4,1001\t6\t9*7"));
+    }
+
+    @Test
+    void addMultipleNumbersStringWithMultipleMultiCharCustomDelimitersAsWellDefaultDelimiters() {
+        assertEquals(30, stringCalculator.add("//[\t][\t\t][**]\n1\n3\n4,1001\t6\t\t9**7"));
     }
 
 }
