@@ -1,9 +1,11 @@
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import static java.util.Objects.isNull;
 
 public class StringCalculator {
     private final String SPLITTER_FORMAT = "[,\n%s]+";
-    private final int STARTING_INDEX_OF_NUMBERS = 4;
-
+    private final Pattern NUMBERS_PATTERN = Pattern.compile("^//\\[(.+)\\]\n");
     public int add(String numbers) {
         if (isNull(numbers) || numbers.isEmpty()) {
             return 0;
@@ -31,20 +33,16 @@ public class StringCalculator {
     }
 
     private String[] getNumbersArray(String numbers) {
-        boolean customSplitterAvailable = isCustomSplitterAvailable(numbers);
-        String splitAt = getSplitter(customSplitterAvailable, numbers);
-        if (customSplitterAvailable) {
-            numbers = numbers.substring(STARTING_INDEX_OF_NUMBERS);
+        Matcher matcher = NUMBERS_PATTERN.matcher(numbers);
+        boolean customDelimiterAvailable = matcher.find();
+        if(customDelimiterAvailable && numbers.length() > matcher.end()) {
+            numbers = numbers.substring(matcher.end());
         }
-        return numbers.split(splitAt);
+        return numbers.split(getSplitter(matcher, customDelimiterAvailable));
     }
 
-    private String getSplitter(boolean customSplitterAvailable, String numbers) {
-        return String.format(SPLITTER_FORMAT, customSplitterAvailable ? numbers.charAt(2) : "");
-    }
-
-    public boolean isCustomSplitterAvailable(String numbers) {
-        return numbers.charAt(0) == '/' && numbers.charAt(1) == '/' && numbers.charAt(3) == '\n';
+    private String getSplitter(Matcher matcher, boolean customDelimiterAvailable) {
+        return String.format(SPLITTER_FORMAT, customDelimiterAvailable ?  "[".concat(matcher.group(1)).concat("]"): "");
     }
 
 
