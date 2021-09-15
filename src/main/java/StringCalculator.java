@@ -15,6 +15,9 @@ public class StringCalculator {
         int number;
         for (String s : numbersArray) {
             number = Integer.parseInt(s);
+            if(number < 0) {
+                throw new IllegalArgumentException(String.format("negatives not allowed : %s", number));
+            }
             sum = Math.addExact(sum, number);
         }
 
