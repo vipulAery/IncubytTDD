@@ -85,4 +85,10 @@ public class StringCalculatorTest {
         assertEquals(19, stringCalculator.add("//\t\n1\n3\n4,5\t6"));
     }
 
+
+    @Test
+    void addMultipleNumbersStringContainingNumberGreaterThan1000() {
+        assertEquals(14, stringCalculator.add("//\t\n1\n3\n4,1001\t6"));
+    }
+
 }
