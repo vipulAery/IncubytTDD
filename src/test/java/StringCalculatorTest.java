@@ -50,13 +50,22 @@ public class StringCalculatorTest {
 
     @Test
     void addTwoNumbersStringContainingIntgerMaxValue() {
-        assertEquals(2147483647, stringCalculator.add("2147483647"));
+        assertEquals(0, stringCalculator.add("2147483647"));
     }
 
     @Test
     void addTwoNumbersStringContainingIntgerMaxValueWithIntgerOverFlowThrowsException() {
-        assertThrows(Exception.class, () -> stringCalculator.add("3,2147483647"));
+        assertThrows(Exception.class, () -> stringCalculator.add(getTestDataForIntegerOverFlow()));
 
+    }
+
+    private String getTestDataForIntegerOverFlow() {
+        StringBuilder stringBuilder = new StringBuilder(90000000);
+        stringBuilder.append("999,1000");
+        for (int i = 0; i < 10000000; i++) {
+            stringBuilder.append(",999,1000");
+        }
+        return stringBuilder.toString();
     }
 
     @Test

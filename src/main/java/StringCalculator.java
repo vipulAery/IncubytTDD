@@ -19,7 +19,7 @@ public class StringCalculator {
             if(number < 0) {
                negativeNumbers.append(' ').append(s);
             }
-            if(negativeNumbers.length() == 0) {
+            if(negativeNumbers.length() == 0 && number < 1001) {
                 sum = Math.addExact(sum, number);
             }
         }
