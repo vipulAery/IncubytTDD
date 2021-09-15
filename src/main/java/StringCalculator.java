@@ -13,12 +13,18 @@ public class StringCalculator {
         String[] numbersArray = getNumbersArray(numbers);
         int sum = 0;
         int number;
+        StringBuilder negativeNumbers = new StringBuilder();
         for (String s : numbersArray) {
             number = Integer.parseInt(s);
             if(number < 0) {
-                throw new IllegalArgumentException(String.format("negatives not allowed : %s", number));
+               negativeNumbers.append(' ').append(s);
             }
-            sum = Math.addExact(sum, number);
+            if(negativeNumbers.length() == 0) {
+                sum = Math.addExact(sum, number);
+            }
+        }
+        if (negativeNumbers.length() != 0) {
+            throw new IllegalArgumentException(String.format("negatives not allowed :%s", negativeNumbers));
         }
 
         return sum;
