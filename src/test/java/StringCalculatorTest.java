@@ -91,13 +91,18 @@ public class StringCalculatorTest {
 
     @Test
     void addMultipleNumbersStringWithCustomAsWellDefaultDelimiters() {
-        assertEquals(19, stringCalculator.add("//\t\n1\n3\n4,5\t6"));
+        assertEquals(19, stringCalculator.add("//[\t\t\t]\n1\n3\t\t4,5\t\t6"));
+    }
+
+    @Test
+    void addMultipleNumbersStringWithCustomAsWellDefaultDelimiters1() {
+        assertEquals(26, stringCalculator.add("//[,,,]\n1,3,,,4,5,,,6,7"));
     }
 
 
     @Test
     void addMultipleNumbersStringContainingNumberGreaterThan1000() {
-        assertEquals(14, stringCalculator.add("//\t\n1\n3\n4,1001\t6"));
+        assertEquals(14, stringCalculator.add("//[\t]\n1\n3\n4,1001\t6"));
     }
 
 }
