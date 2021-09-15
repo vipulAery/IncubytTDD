@@ -33,28 +33,9 @@ public class StringCalculatorTest {
     }
 
     @Test
-    void addNegativeSingleNumberString() {
-        assertEquals(-13, stringCalculator.add("-13"));
-    }
-
-    @Test
-    void addBothNegativeTwoNumberString() {
-        assertEquals(-25, stringCalculator.add("-13,-12"));
-    }
-
-    @Test
-    void addFirstNegativeTwoNumberString() {
-        assertEquals(-1, stringCalculator.add("-13,12"));
-    }
-
-    @Test
-    void addSecondNegativeTwoNumberString() {
-        assertEquals(-1, stringCalculator.add("12,-13"));
-    }
-
-    @Test
-    void addSmallNegativeTwoNumberString() {
-        assertEquals(1, stringCalculator.add("13,-12"));
+    void addNegativeSingleNumberStringThrowsException() {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> stringCalculator.add("-13"));
+        assertEquals("negatives not allowed : -13", exception.getMessage());
     }
 
     @Test
@@ -84,13 +65,9 @@ public class StringCalculatorTest {
     }
 
     @Test
-    void addMultipleNumbersStringWithNegativeAndPositiveIntegers() {
-        assertEquals(-3, stringCalculator.add("1,-3,4,-5"));
-    }
-
-    @Test
-    void addMultipleNumbersStringWithNegativeAndPositiveIntegersWithResultEqualsToSumOfFirstTwoIntegers() {
-        assertEquals(-2, stringCalculator.add("1,-3,4,-4"));
+    void addMultipleNumbersStringWithNegativeAndPositiveIntegersThrowsException() {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> stringCalculator.add("1,-3,4,-5"));
+        assertEquals("negatives not allowed : -3", exception.getMessage());
     }
 
     @Test
@@ -107,4 +84,5 @@ public class StringCalculatorTest {
     void addMultipleNumbersStringWithCustomAsWellDefaultDelimiters() {
         assertEquals(19, stringCalculator.add("//\t\n1\n3\n4,5\t6"));
     }
+
 }
